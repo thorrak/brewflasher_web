@@ -53,6 +53,8 @@
 
 
       </div>
+      <span class="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8 text-gray-400">BrewFlasher Web Edition - <a href="https://github.com/thorrak/brewflasher_web/blob/master/LICENSE" class="text-gray-400">License/Terms of Use</a></span>
+
     </div>
   </div>
 
