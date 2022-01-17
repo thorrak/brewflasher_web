@@ -6,5 +6,3 @@ import './index.css'
 const app = createApp(App);
 app.config.compilerOptions.isCustomElement = tag => tag.startsWith('esp-web-')
 app.mount('#app')
-
-// createApp(App).mount('#app')

@@ -20,15 +20,16 @@ export default {
   ],
   data() {
     return {
-      device_families: {},
+      device_families: [],
+      unsupported_device_families: [],
     }
   },
   mounted() {
     this.getDeviceFamilies();
   },
   watch: {
-    project (newProject) {
-      console.log("New Project in DeviceFamilySelector: " + newProject);
+    project () {
+      // console.log("New Project in DeviceFamilySelector: " + newProject);
       this.getDeviceFamilies();
     },
   },
@@ -38,13 +39,29 @@ export default {
       let self = this;
       let url = "https://www.brewflasher.com/firmware/api/firmware_family_list/project/" + self.$props.project.toString() + "/";
 
+      // Reset device_families before we poll to replace it
+      self.device_families = [];
+      self.unsupported_device_families = [];
+
       xhr.open('GET', url);
       xhr.onload = function () {
         self.fullDict = JSON.parse(xhr.responseText);
 
-        // TODO - Add logic to screen Arduino devices here
+        // Reset device_families before we poll to replace it
+        self.device_families = [];
+        self.unsupported_device_families = [];
+
         if (self.fullDict != null) {
-          self.device_families = self.fullDict;
+          self.fullDict.forEach(function(item) {
+            // console.log(item, index);
+            if(item.name.substring(0, 3) === "ESP") {
+              // console.log("Found ESP " + item.name);
+              self.device_families.push(item)
+            } else {
+              // console.log("Found Non-ESP " + item.name);
+              self.unsupported_device_families.push(item)
+            }
+          });
         }
 
       };
