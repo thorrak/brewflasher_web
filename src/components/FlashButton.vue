@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import 'esp-web-tools/dist/web/install-button'
 import { DownloadIcon } from '@heroicons/vue/solid'
 
 export default {
