@@ -87,3 +87,11 @@ npm run serve
 ```
 npm run build
 ```
+
+
+## License
+BrewFlasher Web Edition is licensed under the [MIT](http://opensource.org/licenses/MIT) license and is
+© John Beeler 2022.
+
+As noted in the license, this software is provided without warranty of any kind. As when flashing any microcontroller,
+a possibility of damage exists. Be careful, as all use of BrewFlasher is at your own risk. 
