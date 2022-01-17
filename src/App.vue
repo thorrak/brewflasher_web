@@ -1,16 +1,42 @@
 <template>
+  <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="max-w-none mx-auto">
+      <div class="bg-white overflow-hidden sm:rounded-lg sm:shadow">
 
-  <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
-    <div class="px-4 py-5 sm:px-6">
-      <!-- Content goes here -->
-      <!-- We use less vertical padding on card headers on desktop than on body sections -->
-    </div>
-    <div class="px-4 py-5 sm:p-6">
-      <!-- Content goes here -->
-      <ProjectSelector v-model="project" />
-      <DeviceFamilySelector v-if="project !== ''" v-model="device" :project="project" />
-      <FirmwareSelector v-if="device !== '' && project !== ''" v-model="firmware" :project="project" :device="device" />
-      <FlashButton v-if="firmware !== ''" :firmware="firmware"/>
+        <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Select Firmware
+          </h3>
+        </div>
+
+        <ul role="list" class="divide-y divide-gray-200">
+
+          <li>
+            <div class="px-4 py-4 sm:px-6">
+              <ProjectSelector v-model="project" />
+            </div>
+          </li>
+
+          <li v-if="project !== ''">
+            <div class="px-4 py-4 sm:px-6">
+              <DeviceFamilySelector v-model="device" :project="project" />
+            </div>
+          </li>
+
+          <li v-if="device !== '' && project !== ''">
+            <div class="px-4 py-4 sm:px-6">
+              <FirmwareSelector v-model="firmware" :project="project" :device="device" />
+            </div>
+          </li>
+
+          <li v-if="firmware !== ''">
+            <div class="px-4 py-4 sm:px-6">
+              <FlashButton :firmware="firmware"/>
+            </div>
+          </li>
+
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -39,18 +65,18 @@ export default {
     }
   },
   watch: {
-    project (newProject) {
-      console.log("New Project: " + newProject);
+    project () {
+      // console.log("New Project: " + newProject);
       this.device = "";
       this.firmware = "";
     },
-    device (newDevice) {
-      console.log("New Device: " + newDevice);
+    device () {
+      // console.log("New Device: " + newDevice);
       this.firmware = "";
     },
-    firmware (newFirmware) {
-      console.log("New Firmware: " + newFirmware);
-    },
+    // firmware (newFirmware) {
+    //   console.log("New Firmware: " + newFirmware);
+    // },
   },
 }
 </script>
@@ -60,7 +86,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  //text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }

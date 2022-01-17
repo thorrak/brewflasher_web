@@ -1,28 +1,14 @@
 <template>
-  <form class="space-y-8 divide-y divide-gray-200">
-    <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-
-      <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
-        <div class="space-y-6 sm:space-y-5">
-
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label for="firmware_sel" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-              Firmware
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <select id="firmware_sel" :value="modelValue" name="firmware_sel" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" aria-describedby="vol_unit-description" @input="$emit('update:modelValue', $event.target.value)">
-                <option v-for="this_firmware in firmware_list" :key="this_firmware.id" :value="this_firmware.id">{{ this_firmware.name }} - v{{this_firmware.version}} <span v-if="this_firmware.variant">- {{ this_firmware.variant }}</span></option>
-              </select>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
+  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+    <label for="firmware_sel" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+      Firmware
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <select id="firmware_sel" :value="modelValue" name="firmware_sel" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" aria-describedby="vol_unit-description" @input="$emit('update:modelValue', $event.target.value)">
+        <option v-for="this_firmware in firmware_list" :key="this_firmware.id" :value="this_firmware.id">{{ this_firmware.name }} - v{{this_firmware.version}} <span v-if="this_firmware.variant">- {{ this_firmware.variant }}</span></option>
+      </select>
     </div>
-  </form>
-
+  </div>
 </template>
 
 <script>
