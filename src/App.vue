@@ -5,11 +5,12 @@
 
         <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
           <h3 class="text-lg leading-6 font-medium text-gray-900">
-            Select Firmware
+            <span v-if="isSupported">Select Firmware</span>
+            <span v-if="!isSupported" class="text-red-600">Warning: Browser Unsupported!</span>
           </h3>
         </div>
 
-        <ul role="list" class="divide-y divide-gray-200">
+        <ul role="list" class="divide-y divide-gray-200" v-if="isSupported">
 
           <li>
             <div class="px-4 py-4 sm:px-6">
@@ -36,6 +37,21 @@
           </li>
 
         </ul>
+
+        <div class="px-4 sm:px-6" v-if="!isSupported">
+          <p class="py-4">
+            Unfortunately, your browser does not support <a href="https://caniuse.com/web-serial">Web Serial</a> which is
+            required for this app to function. Web Serial is currently supported by recent, desktop versions of Google
+            Chrome, Microsoft Edge, and Opera.
+          </p>
+
+          <p class="py-4">
+            Instead of using the web app, try downloading <a href="https://github.com/thorrak/brewflasher/releases">BrewFlasher Desktop</a>
+            instead.
+          </p>
+        </div>
+
+
       </div>
     </div>
   </div>
@@ -47,6 +63,7 @@ import ProjectSelector from "@/components/ProjectSelector";
 import DeviceFamilySelector from "@/components/DeviceFamilySelector";
 import FirmwareSelector from "@/components/FirmwareSelector";
 import FlashButton from "@/components/FlashButton";
+import Bowser from "bowser";
 
 
 export default {
@@ -78,6 +95,17 @@ export default {
     //   console.log("New Firmware: " + newFirmware);
     // },
   },
+  computed: {
+    isSupported: function () {
+      const browser = Bowser.getParser(window.navigator.userAgent);
+      return browser.satisfies({
+        // From https://caniuse.com/web-serial
+        opera: ">=76",
+        edge: ">=90",
+        chrome: ">= 89",
+      });
+    }
+  }
 }
 </script>
 
@@ -86,8 +114,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  //text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
