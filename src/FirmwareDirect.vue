@@ -20,7 +20,7 @@
 
           <li>
             <div class="px-4 py-4 sm:px-6">
-              <FlashButton :firmware="$route.params.id"/>
+              <FlashButton :firmware="$route.params.id" :directLink="1" />
             </div>
           </li>
 

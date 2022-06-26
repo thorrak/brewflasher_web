@@ -10,6 +10,7 @@ const routes = [
     },
     {
         path: '/fw/:id',
+        name: "FirmwareDirect",
         component: FirmwareDirect,
     },
 
