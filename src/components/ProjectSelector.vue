@@ -31,7 +31,7 @@ export default {
       let xhr = new XMLHttpRequest();
       let self = this;
 
-      xhr.open('GET', "https://www.brewflasher.com/firmware/api/project_list/all/");
+      xhr.open('GET', "https://www.brewflasher.com/firmware/api/project_list/esp/");
       xhr.onload = function () {
         self.fullDict = JSON.parse(xhr.responseText);
 
