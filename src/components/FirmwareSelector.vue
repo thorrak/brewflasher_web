@@ -5,7 +5,7 @@
     </label>
     <div class="mt-1 sm:mt-0 sm:col-span-2">
       <select id="firmware_sel" :value="modelValue" name="firmware_sel" class="max-w-lg block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md" aria-describedby="vol_unit-description" @input="$emit('update:modelValue', $event.target.value)">
-        <option v-for="this_firmware in firmware_list" :key="this_firmware.id" :value="this_firmware.id">{{ this_firmware.name }} - v{{this_firmware.version}} <span v-if="this_firmware.variant">- {{ this_firmware.variant }}</span></option>
+        <option v-for="this_firmware in firmware_list" :key="this_firmware.id" :value="this_firmware.id">{{ this_firmware.name }} - {{this_firmware.version}} <span v-if="this_firmware.variant">- {{ this_firmware.variant }}</span></option>
       </select>
     </div>
   </div>
